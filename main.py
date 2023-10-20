@@ -1,7 +1,11 @@
 from features.LinearCongruentialGenerator import entry_point as lcg
+from features.MD5 import md5
+
 
 FEATURES = [
-    ("Linear Congruential Generator", lcg.entry_point)
+    ("Linear Congruential Generator", lcg.entry_point),
+    ("MD5", md5.entry_point)
+
 ]
 
 def show_menu():
@@ -19,6 +23,7 @@ def show_menu():
 
             FEATURES[option - 1][1]()
         except:
+            print('Entered value does not meet initial requirements! Enter number from 0 to 2!')
             continue
 
 if __name__ == "__main__":

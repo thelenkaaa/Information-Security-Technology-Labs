@@ -8,7 +8,7 @@ import os
 FEATURES = [
     ("Linear Congruential Generator", lcg.entry_point),
     ("MD5", md5.entry_point),
-    ("RC5-CBC-Pad", rc5.entry_point),
+    ("RC5", rc5.entry_point),
 
 ]
 

@@ -2,7 +2,7 @@ import os
 import struct
 
 
-class RC5CBCPad:
+class RC5:
     def __init__(self, key, word_size=16, num_rounds=12):
         self.block_size = 8
         self.word_size = word_size
@@ -10,7 +10,9 @@ class RC5CBCPad:
 
         self.key = self._pad_key(key, self.block_size)
 
-
+# ключ шифрування доповнюється на потрібний розмір, щоб відповідати розміру блоку.
+# Якщо ключ коротший, він доповнюється нулями.
+# Якщо ключ довший за розмір блоку, він скорочується.
     def _pad_key(self, key, block_size):
         key_len = len(key)
         if key_len >= block_size:
@@ -21,6 +23,8 @@ class RC5CBCPad:
     def _xor_bytes(self, a, b):
         return bytes(x ^ y for x, y in zip(a, b))
 
+#Ця функція доповнює дані так, щоб вони були кратними розміру блоку.
+# Він використовує таке доповнення, де до даних додається n байт із значенням n.
     def _pad_data(self, data):
         padding_len = self.block_size - len(data) % self.block_size
         padding = bytes([padding_len] * padding_len)
@@ -37,14 +41,11 @@ class RC5CBCPad:
     def _split_blocks(self, data):
         return [data[i:i + self.block_size] for i in range(0, len(data), self.block_size)]
 
-    def update_params(self, word_size, num_rounds):
-        word_size = word_size
-        num_rounds = num_rounds
-
     def encrypt(self, plaintext, iv):
         plaintext = self._pad_data(plaintext)
         blocks = self._split_blocks(plaintext)
         ciphertext = b''
+        # ініціалізаційним вектор для першого блоку
         prev_block = iv
 
         for block in blocks:
@@ -72,7 +73,8 @@ class RC5CBCPad:
         # Convert the block into four words (A, B, C, and D)
         A, B, C, D = struct.unpack('!HHHH', block)
 
-        # Key expansion (you should implement a secure key expansion)
+        # Key expansion
+        # The expanded_key is now a list of 2*(num_rounds + 1) 16-bit words
         round_keys = self._expand_key()
 
         # Perform encryption rounds
@@ -163,10 +165,7 @@ class RC5CBCPad:
         with open(output_filename, 'wb') as outfile:
             outfile.write(decrypted_data)
 
-# Inp: /Users/batiukmaks/PycharmProjects/Information-Security-Technology-Labs/1005183813.m4a
-# Enc: /Users/batiukmaks/PycharmProjects/Information-Security-Technology-Labs/results/1005183813-enc.m4a
-# Dec: /Users/batiukmaks/PycharmProjects/Information-Security-Technology-Labs/results/1005183813-dec.m4a
 
-# Inp: /Users/batiukmaks/PycharmProjects/Information-Security-Technology-Labs/features/RC5/example-input.txt
-# Enc: /Users/batiukmaks/PycharmProjects/Information-Security-Technology-Labs/results/example-input-enc.txt
-# Dec: /Users/batiukmaks/PycharmProjects/Information-Security-Technology-Labs/results/example-input-dec.txt
+#Inp: /Users/lenka/Documents/Fifth semester/TofSI/Лаба 1/song.m4a
+#Enc: /Users/lenka/Documents/Fifth semester/TofSI/Лаба 1/features/RC5/result-enc.m4a
+#Dec: /Users/lenka/Documents/Fifth semester/TofSI/Лаба 1/features/RC5/result-dec.m4a

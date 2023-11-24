@@ -165,7 +165,3 @@ class RC5:
         with open(output_filename, 'wb') as outfile:
             outfile.write(decrypted_data)
 
-
-#Inp: /Users/lenka/Documents/Fifth semester/TofSI/Лаба 1/song.m4a
-#Enc: /Users/lenka/Documents/Fifth semester/TofSI/Лаба 1/features/RC5/result-enc.m4a
-#Dec: /Users/lenka/Documents/Fifth semester/TofSI/Лаба 1/features/RC5/result-dec.m4a

@@ -16,7 +16,7 @@ class RC5_SERVICE():
         self.key = self.md5.hexdigest(self.passcode).encode('utf-8')
         self.service = RC5(self.key, self.word_size, self.num_rounds)
 
-        print("\nWelcome to RC5-CBC-Pad\n")
+        print("Welcome to RC5\n")
         print("Default parameters are:")
         print(f"Word size: {self.word_size}")
         print(f"Rounds: {self.num_rounds}")
@@ -92,3 +92,7 @@ def entry_point():
     while True:
         if not service.show_initial_options():
             break
+
+# Input         /Users/lenka/Documents/Fifth semester/TofSI/Лаба 1/song.m4a
+# Encryption    /Users/lenka/Documents/Fifth semester/TofSI/Лаба 1/features/RC5/result-enc.m4a
+# Decryption    /Users/lenka/Documents/Fifth semester/TofSI/Лаба 1/features/RC5/result-dec.m4a

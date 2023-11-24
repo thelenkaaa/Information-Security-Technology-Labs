@@ -35,6 +35,7 @@ class RC5_SERVICE():
         if not output_file_path:
             output_file_path = self.input_file
 
+        print("Decryption in progress...")
         self.service.decrypt_file(input_file_path, output_file_path)
 
         print("Decryption successful! Decrypted data saved to", output_file_path)
@@ -52,10 +53,12 @@ class RC5_SERVICE():
             return
 
         output_file_path = input(f"Enter output file path or press Enter to use default file {self.output_file}: ")
+
         if not output_file_path:
             print(f"Saving to {self.output_file}")
             output_file_path = self.output_file
 
+        print("Encryption in progress...")
         self.service.encrypt_file(input_file_path, output_file_path)
 
         print("Encryption successful! Encrypted data saved to", output_file_path)

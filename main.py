@@ -1,6 +1,7 @@
 from features.LinearCongruentialGenerator import entry_point as lcg
 from features.MD5 import md5
-from features.RC5 import rc5 as rc5
+from features.RC5 import rc5
+from features.RSA import rsa
 
 import os
 
@@ -9,6 +10,7 @@ FEATURES = [
     ("Linear Congruential Generator", lcg.entry_point),
     ("MD5", md5.entry_point),
     ("RC5", rc5.entry_point),
+    ("RSA", rsa.entry_point)
 
 ]
 
@@ -28,7 +30,7 @@ def show_menu():
             os.system("clear")
             FEATURES[option - 1][1]()
         except:
-            print('Entered value does not meet initial requirements! Enter number from 0 to 3!')
+            print('Entered value does not meet initial requirements! Enter number from 0 to 4!')
             continue
 
 if __name__ == "__main__":

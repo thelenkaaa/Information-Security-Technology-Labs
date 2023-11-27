@@ -41,7 +41,7 @@ class RC5:
     def _split_blocks(self, data):
         return [data[i:i + self.block_size] for i in range(0, len(data), self.block_size)]
 
-    def encrypt(self, plaintext, iv):
+    def encrypt(self, plaintext, iv=os.urandom(8)):
         plaintext = self._pad_data(plaintext)
         blocks = self._split_blocks(plaintext)
         ciphertext = b''

@@ -2,6 +2,7 @@ from features.LinearCongruentialGenerator import entry_point as lcg
 from features.MD5 import md5
 from features.RC5 import rc5
 from features.RSA import rsa
+from features.DSS import dss
 
 import os
 
@@ -10,8 +11,8 @@ FEATURES = [
     ("Linear Congruential Generator", lcg.entry_point),
     ("MD5", md5.entry_point),
     ("RC5", rc5.entry_point),
-    ("RSA", rsa.entry_point)
-
+    ("RSA", rsa.entry_point),
+    ("DSS", dss.entry_point)
 ]
 
 def show_menu():
